@@ -1,0 +1,18 @@
+{
+  "name": "github-to-keybase-cloner",
+  "version": "1.0.0",
+  "description": "Clone a GitHub Repository to and Encrypted Keybase Repository",
+  "repository": "",
+  "main": "handler.js",
+  "scripts": {
+    "deploy": "serverless deploy",
+    "logs": "serverless logs -f githubWebhookListener -t"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "lambda-git": "^0.1.2",
+    "minimist": "^1.2.0",
+    "serverless-optimizer-plugin": "^2.5.1"
+  }
+}

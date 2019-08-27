@@ -1,0 +1,60 @@
+service: github-to-keybase-cloner
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  region: us-east-1
+  variableSyntax: '\${{([\s\S]+?)}}'
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "sqs:SendMessage"
+        - "sqs:GetQueueUrl"
+      Resource:
+        - Fn::Sub: "arn:aws:sqs:*:${AWS::AccountId}:*"
+    - Effect: "Allow"
+      Action:
+        - "sqs:ListQueues"
+      Resource:
+        - Fn::Sub: "arn:aws:sqs:*:${AWS::AccountId}:*"
+
+functions:
+  githubWebhookListener:
+    handler: listener.githubWebhookListener
+    environment:
+      GITHUB_WEBHOOK_SECRET: REPLACE-WITH-YOUR-SECRET-HERE
+    package:
+      exclude:
+        - node_modules/**
+    events:
+      - http:
+          path: webhook
+          method: post
+          cors: true
+  githubtoKeybaseCloner:
+    handler: cloner.githubtoKeybaseCloner
+    environment:
+      XDG_RUNTIME_DIR: /tmp
+      HOME: /tmp
+      GIT_SSH_COMMAND: "ssh -i /tmp/.ssh/id_rsa -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
+    timeout: 360
+    memorySize: 3008
+    package:
+      include:
+        - .ssh/**
+        - gopath/**
+    events:
+      - sqs:
+          arn:
+            Fn::GetAtt:
+              - gitClonerQueue
+              - Arn
+          batchSize: 1
+
+resources:
+  Resources:
+    gitClonerQueue:
+      Type: AWS::SQS::Queue
+      Properties:
+        VisibilityTimeout: 360
+        QueueName: "gitClonerQueue"
