@@ -1,6 +1,6 @@
 const exec = require('child_process').execSync;
 var paperkey = '';
-var keybaseRepoName = '';
+var keybaseRepoURI = '';
 var username = '';
 var githubRepoURL = '';
 var githubRepoName = '';
@@ -90,7 +90,7 @@ function cloneRepo(){
 
   execute(cmd, '/tmp');
 
-  cmd = 'git push --mirror keybase://private/' + username + '/' + keybaseRepoName;
+  cmd = 'git push --mirror ' + keybaseRepoURI;
 
   execute(cmd, '/tmp/_tmp.git');
 
@@ -115,7 +115,7 @@ module.exports.githubtoKeybaseCloner = async function(event) {
       const attr = event.Records[0].messageAttributes;
 
       paperkey = attr.paperkey.stringValue;
-      keybaseRepoName = attr.keybaseRepoName.stringValue;
+      keybaseRepoURI = attr.keybaseRepoURI.stringValue;
       username = attr.username.stringValue;
       githubRepoURL = attr.githubRepoURL.stringValue;
       githubRepoName = attr.githubRepoName.stringValue;

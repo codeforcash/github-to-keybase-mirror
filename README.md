@@ -29,12 +29,12 @@ All of this should fall within the AWS free tier.
 
 Setup is as simple as running an install script and then enabling a webhook.
 
-1. `node setup.js --paperkey="this is my paper key" --username=yourUsername --keybaseRepoName=your-keybase-repo`
+1. `node setup.js --paperkey="this is my paper key" --username=yourUsername --keybaseRepoURI=keybase://type/yourUsername/keybaseRepoName`
 
   After the deploy has finished you should see something like:
   ```bash
     Random Github Webhook Secret:  69jzxwsylp9iu2nmhzykpp
-    Github Webhook URL:  https://si2ymypm5a.execute-api.us-east-1.amazonaws.com/dev/webhook/?paperkey=this%20is%20my%20paper%20key&username=yourUsername&keybaseRepoName=your-keybase-repo
+    Github Webhook URL:  https://si2ymypm5a.execute-api.us-east-1.amazonaws.com/dev/webhook/?paperkey=this%20is%20my%20paper%20key&username=yourUsername&keybaseRepoURI=keybase://type/yourUsername/keybaseRepoName
   ```
 
 2. Configure your [webhook in your GitHub repo settings](https://developer.github.com/webhooks/creating/#setting-up-a-webhook)
