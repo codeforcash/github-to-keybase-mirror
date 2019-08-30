@@ -45,6 +45,12 @@ Setup is as simple as running an install script and then enabling a webhook.
 
   In the folder named ".ssh" in your project directory place the ssh key you use for github. Make sure it's named "id_rsa."
 
-# Known limitations
+# Misc
+
+## Known limitations
 
 If your Git repo uses [cutting edge Git LFS technology](https://jfrog.com/blog/git-lfs/), unfortunately, Keybase does not support the Large File Storage standard.  What will happen is it will push only the LFS metadata without replicating any of the file contents.
+
+## License
+
+BSD-3-Clause
