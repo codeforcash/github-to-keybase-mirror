@@ -23,7 +23,7 @@ This app enables you to set a webhook in a GitHub repo which will mirror to Keyb
 
 **No worries**
 
-All of this should fall within the AWS free tier.
+All of this should fall within the AWS free tier!
 
 # Setup
 

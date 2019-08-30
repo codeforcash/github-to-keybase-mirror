@@ -22,7 +22,7 @@ functions:
   githubWebhookListener:
     handler: listener.githubWebhookListener
     environment:
-      GITHUB_WEBHOOK_SECRET: REPLACE-WITH-YOUR-SECRET-HERE
+      GITHUB_WEBHOOK_SECRET: kf0e69b0yshzaudycljdb
     package:
       exclude:
         - node_modules/**
