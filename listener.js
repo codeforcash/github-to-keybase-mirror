@@ -71,7 +71,7 @@ module.exports.githubWebhookListener = (event, context, callback) => {
   /* eslint-enable */
 
   var paperkey = event.queryStringParameters['paperkey'];
-  const keybaseRepoName = event.queryStringParameters['keybaseRepoName'];
+  const keybaseRepoURI = event.queryStringParameters['keybaseRepoURI'];
   const username = event.queryStringParameters['username'];
   const githubRepoURL = eventObj.repository.html_url;
   const githubRepoName = eventObj.repository.name;
@@ -99,7 +99,7 @@ module.exports.githubWebhookListener = (event, context, callback) => {
     DelaySeconds: 0,
     MessageAttributes: {
       paperkey: { DataType: 'String', StringValue: paperkey},
-      keybaseRepoName: { DataType: 'String', StringValue: keybaseRepoName},
+      keybaseRepoURI: { DataType: 'String', StringValue: keybaseRepoURI},
       username: { DataType: 'String', StringValue: username},
       githubRepoURL: { DataType: 'String', StringValue: githubRepoURL},
       githubRepoName: { DataType: 'String', StringValue: githubRepoName},

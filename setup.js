@@ -3,7 +3,7 @@ const fs = require('fs');
 var randomGithubWebhookSecret = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
 var webhookURL;
 var paperkey = '';
-var keybaseRepoName = '';
+var keybaseRepoURI = '';
 var username = '';
 
 function setupDirectory(){
@@ -22,7 +22,7 @@ function getParameters(){
 
   paperkey = args['paperkey'];
   username = args['username'];
-  keybaseRepoName = args['keybaseRepoName'];
+  keybaseRepoURI = args['keybaseRepoURI'];
 
 }
 
@@ -59,7 +59,7 @@ function generateWebhookURL(){
 
   paperkey = encodeURI(paperkey);
 
-  webhookURL += `/?paperkey=${paperkey}&username=${username}&keybaseRepoName=${keybaseRepoName}`;
+  webhookURL += `/?paperkey=${paperkey}&username=${username}&keybaseRepoURI=${keybaseRepoURI}`;
 
 }
 
